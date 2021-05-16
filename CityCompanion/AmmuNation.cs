@@ -21,13 +21,22 @@ namespace CityCompanion
         private readonly ObjectPool pool = new ObjectPool();
         private readonly NativeMenu menu = new NativeMenu("Ammu-Nation", "Ammu-Nation");
         private readonly List<NativeItem> purchases = new List<NativeItem>();
+        private readonly List<Blip> blips = new List<Blip>();
         private int delay;
 
         public AmmuNation()
         {
             Tick += AmmuNation_Tick;
+            Aborted += AmmuNation_Aborted;
             pool.Add(menu);
             var shopItems = JsonConvert.DeserializeObject<AmmuNationShopItems>(File.ReadAllText(@"scripts\CityCompanion\ammu_nation.json"));
+            foreach (var pos in AmmuNationLocations)
+            {
+                var blip = World.CreateBlip(pos);
+                blip.Sprite = BlipSprite.AmmuNation;
+                blip.Scale = 0.75f;
+                blips.Add(blip);
+            }
             foreach (var item in shopItems.Products)
             {
                 var purchase = new NativeItem(item.Name, $"Purchases a {item.Name} for $${item.Price}.", "$" + item.Price.ToString());
@@ -50,6 +59,17 @@ namespace CityCompanion
                 };
                 purchases.Add(purchase);
                 menu.Add(purchase);
+            }
+        }
+
+        private void AmmuNation_Aborted(object sender, EventArgs e)
+        {
+            foreach (var item in blips)
+            {
+                if (item?.Exists() == true)
+                {
+                    item.Delete();
+                }
             }
         }
 

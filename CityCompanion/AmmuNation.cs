@@ -23,12 +23,10 @@ namespace CityCompanion
         private readonly List<NativeItem> purchases = new List<NativeItem>();
         private readonly List<Blip> blips = new List<Blip>();
         private int delay;
+        private AmmuNationDrawing drawing;
 
         public AmmuNation()
         {
-            Tick += AmmuNation_Tick;
-            Aborted += AmmuNation_Aborted;
-            pool.Add(menu);
             var shopItems = JsonConvert.DeserializeObject<AmmuNationShopItems>(File.ReadAllText(@"scripts\CityCompanion\ammu_nation.json"));
             foreach (var pos in AmmuNationLocations)
             {
@@ -60,6 +58,11 @@ namespace CityCompanion
                 purchases.Add(purchase);
                 menu.Add(purchase);
             }
+            Tick += AmmuNation_Tick;
+            Aborted += AmmuNation_Aborted;
+
+            drawing = InstantiateScript<AmmuNationDrawing>();
+            drawing.pool.Add(menu);
         }
 
         private void AmmuNation_Aborted(object sender, EventArgs e)
@@ -75,10 +78,8 @@ namespace CityCompanion
 
         private void AmmuNation_Tick(object sender, EventArgs e)
         {
-            pool.Process();
             foreach (var ammu in AmmuNationLocations)
             {
-                Yield();
                 if (ammu.DistanceTo(Game.Player.Character.Position) < 5f)
                 {
                     if (!menu.Visible)

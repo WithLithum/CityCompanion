@@ -22,12 +22,16 @@ namespace CityCompanion
         private readonly NativeMenu menu = new NativeMenu("Ammu-Nation", "Ammu-Nation");
         private readonly List<NativeItem> purchases = new List<NativeItem>();
         private readonly List<Blip> blips = new List<Blip>();
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
+        private readonly Dictionary<WeaponHash, WeaponDefinition> weaponDefinitions;
+#pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
         private int delay;
-        private AmmuNationDrawing drawing;
+        private readonly AmmuNationDrawing drawing;
 
         public AmmuNation()
         {
             var shopItems = JsonConvert.DeserializeObject<AmmuNationShopItems>(File.ReadAllText(@"scripts\CityCompanion\ammu_nation.json"));
+            weaponDefinitions = JsonConvert.DeserializeObject<Dictionary<WeaponHash, WeaponDefinition>>(File.ReadAllText(@"scripts\CityCompanion\weapno_definition.json"));
             foreach (var pos in AmmuNationLocations)
             {
                 var blip = World.CreateBlip(pos);
@@ -37,23 +41,31 @@ namespace CityCompanion
             }
             foreach (var item in shopItems.Products)
             {
-                var purchase = new NativeItem(item.Name, $"Purchases a {item.Name} for $${item.Price}.", "$" + item.Price.ToString());
+                var weapon = weaponDefinitions[item.Key];
+                var shopEntry = item.Value;
+                var purchase = new NativeItem(Game.GetLocalizedString(weapon.NameLocalizationKey), Game.GetLocalizedString(weapon.DescriptionLocalizationKey), "$" + shopEntry.Price.ToString());
                 purchase.Activated += (sender, e) =>
                 {
-                    if (Companion.Wallet.Money < item.Price)
+                    if (Companion.Wallet.Money < shopEntry.Price)
                     {
                         GTA.UI.Screen.ShowSubtitle("~r~You don't have enough money to purchase.");
                         return;
                     }
-                    Companion.Wallet.Money -= item.Price;
-                    if (Game.Player.Character.Weapons.HasWeapon(item.Hash))
-                    {
-                        Game.Player.Character.Weapons[item.Hash].Ammo += item.AmmoAmount;
+                   Companion.Wallet.Money -= shopEntry.Price;
+                   if (Game.Player.Character.Weapons.HasWeapon(item.Key))
+                   {
+                        Game.Player.Character.Weapons[item.Key].Ammo += shopEntry.AmmoAmount;
                     }
                     else
                     {
-                        Game.Player.Character.Weapons.Give(item.Hash, item.AmmoAmount, false, true);
+                        Game.Player.Character.Weapons.Give(item.Key, shopEntry.AmmoAmount, false, true);
                     }
+                    Audio.PlaySoundFrontend("HACKING_CLICK_GOOD");
+                    purchase.Description = "The purchase was successful.";
+                };
+                purchase.Selected += (sender, e) =>
+                {
+                    purchase.Description = Game.GetLocalizedString(weapon.NameLocalizationKey);
                 };
                 purchases.Add(purchase);
                 menu.Add(purchase);
@@ -62,7 +74,7 @@ namespace CityCompanion
             Aborted += AmmuNation_Aborted;
 
             drawing = InstantiateScript<AmmuNationDrawing>();
-            drawing.pool.Add(menu);
+            drawing.Pool.Add(menu);
         }
 
         private void AmmuNation_Aborted(object sender, EventArgs e)
@@ -74,6 +86,7 @@ namespace CityCompanion
                     item.Delete();
                 }
             }
+            drawing.Abort();
         }
 
         private void AmmuNation_Tick(object sender, EventArgs e)
@@ -84,7 +97,7 @@ namespace CityCompanion
                 {
                     if (!menu.Visible)
                     {
-                        GTA.UI.Screen.ShowHelpTextThisFrame("Press ~KEY_CONTEXT~ to open Ammu-Nation menu.");
+                        GTA.UI.Screen.ShowHelpTextThisFrame("Press ~INPUT_CONTEXT~ to open Ammu-Nation menu.");
                     }
 
                     Game.DisableControlThisFrame(Control.Context);

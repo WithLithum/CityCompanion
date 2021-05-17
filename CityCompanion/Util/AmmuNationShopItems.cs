@@ -8,23 +8,17 @@ using Newtonsoft.Json;
 
 namespace CityCompanion.Util
 {
-    public struct AmmuNationShopItems
+    public class AmmuNationShopItems
     {
         [JsonProperty("products", DefaultValueHandling = DefaultValueHandling.Ignore, Required = Required.Always)]
-#pragma warning disable S1104 // Fields should not have public accessibility
-        public AmmuNationProduct[] Products;
-#pragma warning restore S1104 // Fields should not have public accessibility
+        public Dictionary<WeaponHash, AmmuNationProduct> Products { get; set; }
     }
 
     public class AmmuNationProduct
     {
-        [JsonProperty("name", Required = Required.Always)]
-        public string Name { get; set; }
-        [JsonProperty("hash", Required = Required.Always)]
-        public WeaponHash Hash { get; set; }
         [JsonProperty("price", Required = Required.Always)]
         public int Price { get; set; }
-        [JsonProperty("ammos", Required = Required.DisallowNull, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        [JsonProperty("Ammo", Required = Required.DisallowNull, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public short AmmoAmount { get; set; } = 100;
 }
 }

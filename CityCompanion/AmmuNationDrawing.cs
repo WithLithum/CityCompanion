@@ -11,7 +11,7 @@ namespace CityCompanion
     [ScriptAttributes(NoDefaultInstance = true)]
     public class AmmuNationDrawing : Script
     {
-        public ObjectPool pool = new ObjectPool();
+        public ObjectPool Pool { get; set; } = new ObjectPool();
 
         public AmmuNationDrawing()
         {
@@ -20,7 +20,7 @@ namespace CityCompanion
 
         private void AmmuNationDrawing_Tick(object sender, EventArgs e)
         {
-            pool.Process();
+            Pool.Process();
         }
     }
 }

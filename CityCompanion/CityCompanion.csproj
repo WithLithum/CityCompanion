@@ -45,6 +45,7 @@
     <Compile Include="AmmuNationDrawing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AmmuNationShopItems.cs" />
+    <Compile Include="Util\WeaponDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="LemonUI.SHVDN3">

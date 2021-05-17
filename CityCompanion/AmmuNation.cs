@@ -30,8 +30,8 @@ namespace CityCompanion
 
         public AmmuNation()
         {
-            var shopItems = JsonConvert.DeserializeObject<AmmuNationShopItems>(File.ReadAllText(@"scripts\CityCompanion\ammu_nation.json"));
-            weaponDefinitions = JsonConvert.DeserializeObject<Dictionary<WeaponHash, WeaponDefinition>>(File.ReadAllText(@"scripts\CityCompanion\weapno_definition.json"));
+            var shopItems = JsonConvert.DeserializeObject<AmmuNationShopItems>(File.ReadAllText(@"scripts\CityCompanion\weaponshop_entries.json"));
+            weaponDefinitions = JsonConvert.DeserializeObject<Dictionary<WeaponHash, WeaponDefinition>>(File.ReadAllText(@"scripts\CityCompanion\weapon_definition.json"));
             foreach (var pos in AmmuNationLocations)
             {
                 var blip = World.CreateBlip(pos);
@@ -51,15 +51,23 @@ namespace CityCompanion
                         GTA.UI.Screen.ShowSubtitle("~r~You don't have enough money to purchase.");
                         return;
                     }
-                   Companion.Wallet.Money -= shopEntry.Price;
-                   if (Game.Player.Character.Weapons.HasWeapon(item.Key))
-                   {
+
+                    if (Game.Player.Character.Weapons.HasWeapon(item.Key))
+                    {
+                        if (!shopEntry.AllowExisting)
+                        {
+                            purchase.Description = "You are already had this weapon.";
+                            return;
+                        }
+
                         Game.Player.Character.Weapons[item.Key].Ammo += shopEntry.AmmoAmount;
                     }
                     else
                     {
                         Game.Player.Character.Weapons.Give(item.Key, shopEntry.AmmoAmount, false, true);
                     }
+
+                    Companion.Wallet.Money -= shopEntry.Price;
                     Audio.PlaySoundFrontend("HACKING_CLICK_GOOD");
                     purchase.Description = "The purchase was successful.";
                 };
@@ -70,6 +78,7 @@ namespace CityCompanion
                 purchases.Add(purchase);
                 menu.Add(purchase);
             }
+
             Tick += AmmuNation_Tick;
             Aborted += AmmuNation_Aborted;
 

@@ -10,7 +10,7 @@ namespace CityCompanion.Util
 {
     public class AmmuNationShopItems
     {
-        [JsonProperty("products", DefaultValueHandling = DefaultValueHandling.Ignore, Required = Required.Always)]
+        [JsonProperty("Weapons", DefaultValueHandling = DefaultValueHandling.Ignore, Required = Required.Always)]
         public Dictionary<WeaponHash, AmmuNationProduct> Products { get; set; }
     }
 
@@ -20,5 +20,7 @@ namespace CityCompanion.Util
         public int Price { get; set; }
         [JsonProperty("Ammo", Required = Required.DisallowNull, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public short AmmoAmount { get; set; } = 100;
+        [JsonProperty(Required =  Required.Always)]
+        public bool AllowExisting { get; set; }
 }
 }

@@ -1,4 +1,7 @@
-﻿using GTA;
+﻿// Copyright (c) RelaperCrystal.
+// Licensed under GNU GPL version 3 or any later version.
+
+using GTA;
 using PlayerCompanion;
 
 namespace CityCompanion

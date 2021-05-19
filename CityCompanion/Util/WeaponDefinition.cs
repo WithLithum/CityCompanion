@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿// Copyright (c) RelaperCrystal.
+// Licensed under GNU GPL version 3 or any later version.
+
+using Newtonsoft.Json;
 
 namespace CityCompanion.Util
 {

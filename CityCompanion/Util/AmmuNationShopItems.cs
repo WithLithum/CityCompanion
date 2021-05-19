@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) RelaperCrystal.
+// Licensed under GNU GPL version 3 or any later version.
+
+using System.Collections.Generic;
 using GTA;
 using Newtonsoft.Json;
 

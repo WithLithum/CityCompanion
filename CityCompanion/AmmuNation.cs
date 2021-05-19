@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) RelaperCrystal.
+// Licensed under GNU GPL version 3 or any later version.
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using CityCompanion.Util;

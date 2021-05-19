@@ -37,6 +37,9 @@ namespace CityCompanion
                 var blip = World.CreateBlip(pos);
                 blip.Sprite = BlipSprite.AmmuNation;
                 blip.Scale = 0.75f;
+                blip.Color = BlipColor.Pink;
+                blip.IsShortRange = true;
+                blip.ShowsDollarSign = true;
                 blips.Add(blip);
             }
             foreach (var item in shopItems.Products)
@@ -68,12 +71,13 @@ namespace CityCompanion
                     }
 
                     Companion.Wallet.Money -= shopEntry.Price;
-                    Audio.PlaySoundFrontend("HACKING_CLICK_GOOD");
+                    Audio.PlaySoundFrontend("HACKING_CLICK");
                     purchase.Description = "The purchase was successful.";
+                    menu.SelectedItem = purchase;
                 };
                 purchase.Selected += (sender, e) =>
                 {
-                    purchase.Description = Game.GetLocalizedString(weapon.NameLocalizationKey);
+                    purchase.Description = Game.GetLocalizedString(weapon.DescriptionLocalizationKey);
                 };
                 purchases.Add(purchase);
                 menu.Add(purchase);

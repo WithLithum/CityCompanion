@@ -7,7 +7,6 @@ using System.IO;
 using CityCompanion.Util;
 using GTA;
 using GTA.Math;
-using LemonUI;
 using LemonUI.Menus;
 using Newtonsoft.Json;
 using PlayerCompanion;

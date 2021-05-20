@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) RelaperCrystal.
+// Licensed under GNU GPL version 3 or any later version.
+
 using GTA;
 using GTA.Native;
 

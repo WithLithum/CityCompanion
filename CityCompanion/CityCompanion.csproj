@@ -48,6 +48,7 @@
     <Compile Include="Util\AmmuNationShopItems.cs" />
     <Compile Include="Util\WeaponDefinition.cs" />
     <Compile Include="VehicleMod\VehicleModService.cs" />
+    <Compile Include="VehicleMod\VehicleModTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="LemonUI.SHVDN3">

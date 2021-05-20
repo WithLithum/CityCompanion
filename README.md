@@ -10,3 +10,7 @@ The City Companion project aims to provide various expansions based on the Playe
 
 Please see the [topic](https://hardboardrc.foru.ms/3-wipsrc-only-citycompanion/) here for more info about contributing.
 
+## Documentation
+
+Our documentation was moved! Pay a visit to our Azure DevOps wiki: [The Wiki](https://dev.azure.com/HotWorkshop/CityCompanion-CI/_wiki/wikis/CityCompanion-CI.wiki?wikiVersion=GBwikiMaster)
+

@@ -18,7 +18,6 @@ namespace CityCompanion
     {
         private static readonly Vector3[] AmmuNationLocations = { new Vector3(18.18945f, -1120.384f, 28.91654f), new Vector3(-325.6184f, 6072.246f, 31.21228f) };
 
-        private readonly ObjectPool pool = new ObjectPool();
         private readonly NativeMenu menu = new NativeMenu("Ammu-Nation", "Ammu-Nation");
         private readonly List<NativeItem> purchases = new List<NativeItem>();
         private readonly List<Blip> blips = new List<Blip>();
@@ -75,7 +74,9 @@ namespace CityCompanion
                     purchase.Description = "The purchase was successful.";
                     menu.SelectedItem = purchase;
                 };
+#pragma warning disable RCS1163 // Unused parameter.
                 purchase.Selected += (sender, e) =>
+#pragma warning restore RCS1163 // Unused parameter.
                 {
                     purchase.Description = Game.GetLocalizedString(weapon.DescriptionLocalizationKey);
                 };

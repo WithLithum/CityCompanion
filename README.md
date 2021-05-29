@@ -1,4 +1,13 @@
-# CityCompanion [![GitHub](https://img.shields.io/github/license/RelaperCrystal/CityCompanion)](COPYING)[![Build Status](https://dev.azure.com/HotWorkshop/CityCompanion-CI/_apis/build/status/RelaperCrystal.CityCompanion?branchName=main)](https://dev.azure.com/HotWorkshop/CityCompanion-CI/_build/latest?definitionId=12&branchName=main)
+# Before you ask
+**Q: What happened to the repo?**
+
+A: Something is wrong with my browser extensions causing them stopping me accessing GitHub Frontend (ping/ssh clone/service ping is FINE, I can contribute, but not comment on issues, email is also fine).
+
+**Q: Is this project abondoned?**
+
+A: Absolutely not. I'm moving the project to another place so I can work on this project without worrying about the frontend. It will be update once I finished the work.
+
+## Past Description
 
 The City Companion project aims to provide various expansions based on the PlayerCompanion mod.
 

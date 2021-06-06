@@ -1,4 +1,4 @@
-# CityCompanion [![GitHub](https://img.shields.io/github/license/RelaperCrystal/CityCompanion)](COPYING)[![Build Status](https://dev.azure.com/HotWorkshop/CityCompanion-CI/_apis/build/status/RelaperCrystal.citycompanion%20(1)?branchName=main)](https://dev.azure.com/HotWorkshop/CityCompanion-CI/_build/latest?definitionId=13&branchName=main)
+# CityCompanion ![license: GPL-3.0-or-later (shields.io)](https://img.shields.io/badge/license-GPL--3.0--or--later-important)[![Azure DevOps builds](https://img.shields.io/azure-devops/build/HotWorkshop/0a5cf8db-cecc-4581-bd34-6b9e3cd96691/12)](https://dev.azure.com/HotWorkshop/CityCompanion-CI/_build/latest?definitionId=13&branchName=main)
 
 The City Companion project aims to provide various expansions based on the PlayerCompanion mod.
 
@@ -9,4 +9,8 @@ The City Companion project aims to provide various expansions based on the Playe
 
 ## Contributing
 
-Simply make changes via **Pull Requests**.
+Simply fork the repo, make changes, then open a **Pull Request**.
+
+## License
+
+This project is licensed under **GNU General Public License version 3**, or any later version if you prefer. See [COPYING file](https://bitbucket.org/RelaperCrystal/citycompanion/src/main/COPYING) for the full license document.

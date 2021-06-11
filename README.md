@@ -1,4 +1,4 @@
-# CityCompanion <br />![license: GPL-3.0-or-later (shields.io)](https://img.shields.io/badge/license-GPL--3.0--or--later-important) ![Build Status](https://ci.appveyor.com/api/projects/status/github/RelaperCrystal/CityCompanion?svg=true)
+# CityCompanion <br />![license: GPL-3.0-or-later (shields.io)](https://img.shields.io/badge/license-GPL--3.0--or--later-important) ![Build Status](https://ci.appveyor.com/api/projects/status/github/RelaperCrystal/CityCompanion?svg=true) [![Gitter](https://img.shields.io/gitter/room/RelaperCrystal/CityCompanion)](https://gitter.im/CityCompanion/community)
 
 The City Companion project aims to provide various expansions based on the PlayerCompanion mod.
 

@@ -11,4 +11,4 @@ Simply fork the repo, make changes, then open a **Pull Request**.
 
 ## License
 
-This project is licensed under **GNU General Public License version 3**, or any later version if you prefer. See [COPYING file](blob/main/COPYING) for the full license document.
+This project is licensed under **GNU General Public License version 3**, or any later version if you prefer. See [COPYING file](COPYING) for the full license document.
